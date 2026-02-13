@@ -6,6 +6,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
+let lightbox = null;
 
 function createGallery(images) {
   gallery.innerHTML = images
@@ -22,6 +23,7 @@ function createGallery(images) {
         ` <li class="gallery-card">
         <a class="gallery-link" href="${largeImageURL}">
               <img src="${webformatURL}" alt="${tags}" class="gallery-icon" />
+              </a>
               <ul class="icon-info">
                <li>Likes<p>${likes}</p></li>
             <li>Views<p>${views}</p></li>
@@ -31,12 +33,15 @@ function createGallery(images) {
           </li>`
     )
     .join('');
-  let lightbox = new SimpleLightbox('.gallery-link', {
-    captionDelay: 250,
-    showCounter: false,
-    captionsData: 'alt',
-  });
-  lightbox.refresh();
+  if (!lightbox) {
+    let lightbox = new SimpleLightbox('.gallery-link', {
+      captionDelay: 250,
+      showCounter: false,
+      captionsData: 'alt',
+    });
+  } else {
+    lightbox.refresh();
+  }
 }
 
 function clearGallery() {
