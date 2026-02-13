@@ -34,7 +34,7 @@ function createGallery(images) {
     )
     .join('');
   if (!lightbox) {
-    let lightbox = new SimpleLightbox('.gallery-link', {
+    lightbox = new SimpleLightbox('.gallery-link', {
       captionDelay: 250,
       showCounter: false,
       captionsData: 'alt',
